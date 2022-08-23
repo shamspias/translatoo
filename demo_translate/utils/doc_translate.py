@@ -3,7 +3,7 @@ import os
 from translate_core import language_translation
 
 
-def translate_docx(doc_file_name, source_ln, target_ln):
+def translate_doc(doc_file_name, source_ln, target_ln):
     """
     translate the word
     """
