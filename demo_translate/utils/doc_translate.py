@@ -5,8 +5,7 @@ from translate_core import language_translation
 
 def translate_docx(doc_file_name, source_ln, target_ln):
     """
-    make pdf into word
-    translate the word make it into pdf and remove the converted word
+    translate the word
     """
     doc_file_name = doc_file_name + "x"
     word_file = target_ln + "_" + doc_file_name
