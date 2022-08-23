@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+    <h1> Show the image</h1>
+
+
+    <form method="POST">
+        {% csrf_token %}
+        <div>
+            <label for="formFileLg" class="form-label">Upload FIle to Translate</label>
+            <input name="my_file" class="form-control form-control-lg" id="formFileLg" type="file">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <a href="#" class="btn btn-primary btn-lg" role="button" aria-disabled="false">Download Translated File</a>
+
+{% endblock %}
