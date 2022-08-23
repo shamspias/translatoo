@@ -10,7 +10,6 @@ import stability_sdk.interfaces.gooseai.generation.generation_pb2 as generation
 
 def get_image(prompt_text, api_key):
     stability_api = client.StabilityInference(
-        # key="sk-DjokWBqmsW7VP1TyWUoofT8NbsxmRFvp6rRixz8xpjFE5MzN",
         key=api_key,
         verbose=True,
     )
