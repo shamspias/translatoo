@@ -21,4 +21,6 @@ def translate_pdf(pdf_file_name, source_ln, target_ln):
 
     os.remove(word_file)
     os.remove(target_word_file)
-    return True
+    directory = os.getcwd()
+    file = directory + new_pdf_file_name
+    return file
