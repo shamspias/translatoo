@@ -1,10 +1,20 @@
-{% load static %}
 {% extends 'base.html' %}
+{% load static %}
 
 {% block body %}
-    <picture>
-        <source srcset="..." type="image/svg+xml">
-        <img src="{{ my_image.url }}" class="img-fluid img-thumbnail" alt="...">
-    </picture>
+    <h1> Show the image</h1>
+
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="inputText">Text of your image imagination</label>
+            <input type="text" name="text" class="form-control" id="inputText" aria-describedby="textFun"
+                   placeholder="Enter text">
+            <small id="textFun" class="form-text text-muted">Fun will start after submit</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <img src="data:image/png;base64,{{ image }}" class="img-fluid" alt="Your Image">
 
 {% endblock %}
