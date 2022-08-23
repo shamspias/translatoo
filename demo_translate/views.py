@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from utils import (
+from .utils import (
     translate_docx,
     translate_doc,
     translate_pdf,

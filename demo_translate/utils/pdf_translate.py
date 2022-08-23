@@ -2,7 +2,7 @@ from pdf2docx import parse
 from docx2pdf import convert
 import os
 
-from translate_core import language_translation
+from .translate_core import language_translation
 
 
 def translate_pdf(pdf_file_name, source_ln, target_ln):
