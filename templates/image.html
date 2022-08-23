@@ -1,0 +1,10 @@
+{% load static %}
+{% extends 'base.html' %}
+
+{% block body %}
+    <picture>
+        <source srcset="..." type="image/svg+xml">
+        <img src="{{ my_image.url }}" class="img-fluid img-thumbnail" alt="...">
+    </picture>
+
+{% endblock %}
