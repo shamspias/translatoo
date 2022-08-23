@@ -28,6 +28,7 @@ def get_image(prompt_text, api_key):
                     "Your request activated the API's safety filters and could not be processed."
                     "Please modify the prompt and try again.")
             if artifact.type == generation.ARTIFACT_IMAGE:
-                img = Image.open(io.BytesIO(artifact.binary))
+                # img = Image.open(io.BytesIO(artifact.binary))
+                img = io.BytesIO(artifact.binary)
                 # display(img)
                 return img
