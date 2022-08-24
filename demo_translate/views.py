@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
+import random
+import string
 
 from .models import LanguageCode, TranslatedFile
 from .forms import LanguageModelForm, FileModelForm
@@ -11,7 +13,6 @@ from .utils import (
 
 
 def check_pdf(filename):
-    print('file name', filename)
     if filename.endswith('.pdf'):
         return True
     else:
@@ -19,7 +20,6 @@ def check_pdf(filename):
 
 
 def check_doc(filename):
-    print('file name', filename)
     if filename.endswith('.doc'):
         return True
     else:
@@ -27,7 +27,6 @@ def check_doc(filename):
 
 
 def check_docx(filename):
-    print('file name', filename)
     if filename.endswith('.docx'):
         return True
     else:
@@ -55,10 +54,13 @@ class DocumentTranslateView(TemplateView):
         destination_language = request.POST.get('destination')
 
         if my_file:
-            _file = TranslatedFile.objects.create(name=my_file.name, my_file=my_file)
-            file_obj = TranslatedFile.objects.get(name__exact=my_file.name)
+            random_name = ''.join(random.choices(string.ascii_lowercase + string.digits, k=5))
+            new_name = random_name + my_file.name
+            _file = TranslatedFile.objects.create(name=new_name, my_file=my_file)
+            file_obj = TranslatedFile.objects.get(name__exact=new_name)
             if check_pdf(file_obj.name):
-                translate_pdf(file_obj.my_file, source_language, destination_language)
+                translate_pdf(file_obj, source_language, destination_language)
+            # _file.delete()
 
             # try:
             #     file_obj = TranslatedFile.objects.create(name=my_file.name, my_file=my_file)
