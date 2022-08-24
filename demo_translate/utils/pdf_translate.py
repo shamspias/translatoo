@@ -13,7 +13,8 @@ def doc2pdf_linux(doc, file_path):
     :param doc: path to document
     """
     path_project = '/home/ubuntu/translatoo/'
-    cmd = 'libreoffice --convert-to pdf'.split() + [path_project] + [doc] + ['--outdir'] + [path_project] + [file_path]
+    cmd = ['libreoffice --convert-to pdf' + path_project + doc + '--outdir' + path_project + file_path]
+    # cmd = 'libreoffice --convert-to pdf'.split() + [path_project] + [doc] + ['--outdir'] + [path_project] + [file_path]
     print(cmd)
     p = subprocess.Popen(cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
     p.wait(timeout=1000)
