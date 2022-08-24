@@ -9,8 +9,7 @@ def translate_doc(doc_file_name, source_ln, target_ln):
     """
     doc_file_name = doc_file_name + "x"
     word_file = target_ln + "_" + doc_file_name
+    new_doc_file_name = "media/files/" + word_file
+    language_translation(doc_file_name, new_doc_file_name, source_ln, target_ln)
 
-    language_translation(doc_file_name, word_file, source_ln, target_ln)
-
-    os.remove(word_file)
-    return True
+    return "files/" + word_file
