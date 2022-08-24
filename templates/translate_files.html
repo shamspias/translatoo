@@ -7,20 +7,42 @@
 
 {% block body %}
     <div class="container-fluid">
+        <div class="container text-center">
+            <h1>File Upload</h1>
+            <br>
+            <div class="row">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="formFileLg" class="form-label">Upload FIle to Translate</label>
+                        <input name="my_file" class="form-control form-control-lg" id="formFileLg" type="file">
+                    </div>
 
-            <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div>
-                    <label for="formFileLg" class="form-label">Upload FIle to Translate</label>
-                    <input name="my_file" class="form-control form-control-lg" id="formFileLg" type="file">
-                </div>
-                <br>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+                    <div class="mb-3">
+                        <label for="source_language" class="form-label">Source Language</label>
+                        <select id="source_language" name="source_language" class="form-select">
+                            <option>BN</option>
+                            <option>EN</option>
+                        </select>
+                    </div>
 
-                <br>
-                <a href="#" class="btn btn-primary btn-lg" role="button" aria-disabled="false">Download Translated
-                    File</a>
+                    <div class="mb-3">
+                        <label for="destination_language" class="form-label">Target language</label>
+                        <select id="destination_language" name="destination_language" class="form-select">
+                            <option>EN</option>
+                            <option>BN</option>
+                        </select>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+
             </div>
+            <br>
+            <a href="#" class="btn btn-primary btn-lg" role="button" aria-disabled="false">Download Translated
+                File</a>
+        </div>
+    </div>
 
 {% endblock %}
