@@ -26,6 +26,6 @@ def language_translation(source_doc, target_doc, source_lan="en", target_lan="de
             print("Success " + str(i))
         except:
             print("Error " + str(i))
-    doc.save(target + ".docx")
+    doc.save(target)
     print("Document translation is completed.")
     return True
