@@ -42,7 +42,7 @@ def translate_pdf(pdf_file, source_ln, target_ln):
     try:
         convert(target_word_file, new_pdf_file_name)
     except:
-        doc2pdf_linux(target_word_file)
+        doc2pdf_linux(target_word_file, new_pdf_file_name)
 
     os.remove(word_file)
     os.remove(target_word_file)
