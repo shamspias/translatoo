@@ -22,11 +22,11 @@ def translate_pdf(pdf_file, source_ln, target_ln):
 
     language_translation(word_file, target_word_file, source_ln, target_ln)
 
-    new_pdf_file_name = target_ln + "_" + pdf_file_name
+    new_pdf_file_name = "media/files/" + target_ln + "_" + pdf_file_name
+    return_pdf_path = target_ln + "_" + pdf_file_name
     convert(target_word_file, new_pdf_file_name)
 
     os.remove(word_file)
     os.remove(target_word_file)
-    directory = os.getcwd()
-    file = directory + new_pdf_file_name
+    file = "files/" + return_pdf_path
     return file
