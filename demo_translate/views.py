@@ -62,6 +62,14 @@ class DocumentTranslateView(TemplateView):
                 translated_file = translate_pdf(file_obj, source_language, destination_language)
                 file_obj.translated_file = translated_file
                 file_obj.save()
+            elif check_docx(file_obj.name):
+                translated_file = translate_docx(file_obj, source_language, destination_language)
+                file_obj.translated_file = translated_file
+                file_obj.save()
+            elif check_doc(file_obj.name):
+                translated_file = translate_doc(file_obj, source_language, destination_language)
+                file_obj.translated_file = translated_file
+                file_obj.save()
             # _file.delete()
 
             # try:
