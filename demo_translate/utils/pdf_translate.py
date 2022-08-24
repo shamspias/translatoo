@@ -1,5 +1,4 @@
 from pdf2docx import parse
-from docx2pdf import convert
 import os
 from django.conf import settings
 from .translate_core import language_translation
@@ -41,6 +40,7 @@ def translate_pdf(pdf_file, source_ln, target_ln):
     new_pdf_file_name = "media/files/" + target_ln + "_" + pdf_file_name
     return_pdf_path = target_ln + "_" + pdf_file_name
     try:
+        from docx2pdf import convert
         convert(target_word_file, new_pdf_file_name)
     except:
         doc2pdf_linux(target_word_file, new_pdf_file_name)
