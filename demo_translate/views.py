@@ -49,6 +49,7 @@ class DocumentTranslateView(TemplateView):
         return render(request, 'translate_files.html', context=context)
 
     def post(self, request, *args, **kwargs):
+        context = {}
         my_file = request.FILES.get('my_file')
         source_language = request.POST.get('short_code')
         destination_language = request.POST.get('destination')
@@ -76,11 +77,10 @@ class DocumentTranslateView(TemplateView):
                 #     translated_file = translate_docx(file_obj, source_language, destination_language)
                 #     file_obj.translated_file = translated_file
                 #     file_obj.save()
+
+                context['file_form'] = file_obj.translated_file
             except Exception:
                 print("Error Upload")
 
-        context = {
-            "language_form": self.language_code,
-            "file_form": self.file_filed,
-        }
+        context["language_form"] = self.language_code
         return render(request, 'translate_files.html', context=context)
