@@ -28,8 +28,8 @@ class DocumentTranslateView(TemplateView):
     def post(self, request, *args, **kwargs):
         my_file = request.FILES.get('my_file')
 
-        source_language = request.POST.get('source_language')
-        destination_language = request.POST.get('destination_language')
+        source_language = request.POST.get('short_code')
+        destination_language = request.POST.get('destination')
         print(source_language)
         print(destination_language)
         # if my_file is not None:

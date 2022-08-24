@@ -38,7 +38,6 @@ class LanguageModelForm(forms.ModelForm):
                 attrs={
                     "type": "text",
                     "class": "form-control",
-                    "name": "source_language",
                     "id": "source_language",
 
                 }),
@@ -47,7 +46,6 @@ class LanguageModelForm(forms.ModelForm):
                 attrs={
                     "type": "text",
                     "class": "form-control",
-                    "name": "destination_language",
                     "id": "destination_language",
 
                 }),
