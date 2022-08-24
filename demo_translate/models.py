@@ -24,3 +24,24 @@ class TranslatedFile(models.Model):
 
     def __str__(self):
         return "File : "
+
+    def check_pdf(self, filename):
+        print('file name', filename)
+        if filename.endswith('.pdf'):
+            return True
+        else:
+            return False
+
+    def check_doc(self, filename):
+        print('file name', filename)
+        if filename.endswith('.doc'):
+            return True
+        else:
+            return False
+
+    def check_docx(self, filename):
+        print('file name', filename)
+        if filename.endswith('.docx'):
+            return True
+        else:
+            return False
