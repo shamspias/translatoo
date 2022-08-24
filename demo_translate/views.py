@@ -56,37 +56,28 @@ class DocumentTranslateView(TemplateView):
         if my_file:
             random_name = ''.join(random.choices(string.ascii_lowercase + string.digits, k=5))
             new_name = random_name + my_file.name
-            _file = TranslatedFile.objects.create(name=new_name, my_file=my_file)
-            file_obj = TranslatedFile.objects.get(name__exact=new_name)
-            print(file_obj.name)
-
-            if check_pdf(file_obj.name):
-                translated_file = translate_pdf(file_obj, source_language, destination_language)
-                file_obj.translated_file = translated_file
-                file_obj.save()
-
-            elif check_docx(file_obj.name):
-                translated_file = translate_docx(file_obj, source_language, destination_language)
-                file_obj.translated_file = translated_file
-                file_obj.save()
-
-            elif check_doc(file_obj.name):
-                translated_file = translate_doc(file_obj, source_language, destination_language)
-                file_obj.translated_file = translated_file
-                file_obj.save()
             # _file.delete()
+            try:
+                _file = TranslatedFile.objects.create(name=new_name, my_file=my_file)
+                file_obj = TranslatedFile.objects.get(name__exact=new_name)
+                print(file_obj.name)
 
-            # try:
-            #     file_obj = TranslatedFile.objects.create(name=my_file.name, my_file=my_file)
-            #
-            #     if file_obj.my_file.check_pdf(my_file.name):
-            #         translate_pdf(my_file, source_language, destination_language)
-            #     elif file_obj.my_file.check_doc(my_file.name):
-            #         translate_doc(my_file, source_language, destination_language)
-            #     elif file_obj.my_file.check_docx(my_file.name):
-            #         translate_docx(my_file, source_language, destination_language)
-            # except Exception:
-            #     print("Error Upload")
+                if check_pdf(file_obj.name):
+                    translated_file = translate_pdf(file_obj, source_language, destination_language)
+                    file_obj.translated_file = translated_file
+                    file_obj.save()
+
+                elif check_docx(file_obj.name):
+                    translated_file = translate_docx(file_obj, source_language, destination_language)
+                    file_obj.translated_file = translated_file
+                    file_obj.save()
+
+                # elif check_doc(file_obj.name):
+                #     translated_file = translate_docx(file_obj, source_language, destination_language)
+                #     file_obj.translated_file = translated_file
+                #     file_obj.save()
+            except Exception:
+                print("Error Upload")
 
         context = {
             "language_form": self.language_code,
