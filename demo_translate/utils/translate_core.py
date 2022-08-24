@@ -13,7 +13,7 @@ def language_translation(source_doc, target_doc, source_lan="en", target_lan="de
     target = target_doc.strip()
     target_language = target_lan.strip()
 
-    doc = docx.Document(source + ".docx")
+    doc = docx.Document(source)
     paragraphs = [para.text for para in doc.paragraphs]
     print(len(paragraphs))
     translator = Translator()
