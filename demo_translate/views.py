@@ -83,4 +83,5 @@ class DocumentTranslateView(TemplateView):
                 print("Error Upload")
 
         context["language_form"] = self.language_code
+        context["success"] = "Click Download"
         return render(request, 'translate_files.html', context=context)

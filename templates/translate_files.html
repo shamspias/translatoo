@@ -8,38 +8,48 @@
 {% block body %}
     <div class="container-fluid">
         <div class="container text-center">
-            <h1>File Upload</h1>
-            <br>
-            <div class="row">
-                <form action="./" method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        <label for="formFileLg" class="form-label">Upload FIle to Translate</label>
-                        {{ file_form.my_file.errors }}
-                        {{ file_form.my_file }}
-                    </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+            {% if success %}
+                <a href="{{ file_form.url }}" class="btn btn-primary btn-lg" role="button"
+                   aria-disabled="false">Download
+                    Translated
+                    File</a>
+            {% else %}
+                <h1>File Upload</h1>
+                <br>
+                <div class="row">
+                    <form action="./" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="formFileLg" class="form-label">Upload FIle to Translate</label>
+                            {{ file_form.my_file.errors }}
+                            {{ file_form.my_file }}
+                        </div>
 
-                    <div class="mb-3">
-                        <label for="source_language" class="form-label">Source Language</label>
-                        {{ language_form.short_code.errors }}
-                        {{ language_form.short_code }}
-                    </div>
+                        <div class="mb-3">
+                            <label for="source_language" class="form-label">Source Language</label>
+                            {{ language_form.short_code.errors }}
+                            {{ language_form.short_code }}
+                        </div>
 
-                    <div class="mb-3">
-                        <label for="destination_language" class="form-label">Target language</label>
-                        {{ language_form.destination.errors }}
-                        {{ language_form.destination }}
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                        <div class="mb-3">
+                            <label for="destination_language" class="form-label">Target language</label>
+                            {{ language_form.destination.errors }}
+                            {{ language_form.destination }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
 
 
-            </div>
-            <br>
-            <a href="{{ file_form.url }}" class="btn btn-primary btn-lg" role="button"
-               aria-disabled="false">Download
-                Translated
-                File</a>
+                </div>
+                <br>
+
+            {% endif %}
         </div>
     </div>
 
