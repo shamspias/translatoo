@@ -60,7 +60,8 @@ class DocumentTranslateView(TemplateView):
             file_obj = TranslatedFile.objects.get(name__exact=new_name)
             if check_pdf(file_obj.name):
                 translated_file = translate_pdf(file_obj, source_language, destination_language)
-                file_obj.save(translated_file=translated_file)
+                file_obj.translated_file = translated_file
+                file_obj.save()
             # _file.delete()
 
             # try:
