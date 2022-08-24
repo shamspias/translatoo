@@ -16,7 +16,7 @@ def doc2pdf_linux(doc, file_path):
     cmd = 'libreoffice --convert-to pdf'.split() + [doc] + ['--outdir'] + ['/home/ubuntu/translatoo/'] + [file_path]
     print(cmd)
     p = subprocess.Popen(cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
-    p.wait(timeout=10)
+    p.wait(timeout=1000)
     stdout, stderr = p.communicate()
     if stderr:
         raise subprocess.SubprocessError(stderr)
