@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 
 from .models import LanguageCode
-from .forms import LanguageModelForm
+from .forms import LanguageModelForm, FileModelForm
 from .utils import (
     translate_docx,
     translate_doc,
@@ -15,22 +15,23 @@ class DocumentTranslateView(TemplateView):
     Test Translate files
     """
     template_name = "translate_files.html"
+    language_code = LanguageModelForm()
+    file_filed = FileModelForm()
 
     def get(self, request, *args, **kwargs):
-
-        language_code = LanguageModelForm()
         context = {
-            "languages": language_code
+            "language_form": self.language_code,
+            "file_form": self.file_filed,
         }
         return render(request, 'translate_files.html', context=context)
 
     def post(self, request, *args, **kwargs):
-        my_file = request.GET.get('my_file')
-        source_language = request.GET.get('source_language')
-        destination_language = request.GET.get('destination_language')
+        my_file = request.POST.get('my_file')
+        source_language = request.POST.get('source_language')
+        destination_language = request.POST.get('destination_language')
+        print(my_file)
         print(source_language)
         print(destination_language)
-
         if my_file is not None:
             if self.check_pdf(my_file):
                 translate_pdf(my_file, source_language, destination_language)
@@ -41,7 +42,8 @@ class DocumentTranslateView(TemplateView):
             elif self.check_docx(my_file):
                 translate_docx(my_file, source_language, destination_language)
         context = {
-            "file": my_file
+            "language_form": self.language_code,
+            "file_form": self.file_filed,
         }
         return render(request, 'translate_files.html', context=context)
 
