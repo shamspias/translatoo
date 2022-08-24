@@ -21,26 +21,27 @@
                     <div class="mb-3">
                         <label for="source_language" class="form-label">Source Language</label>
                         <select id="source_language" name="source_language" class="form-select">
-                            <option>BN</option>
-                            <option>EN</option>
+                            <option value="en">EN</option>
+                            <option value="bn">BN</option>
                         </select>
                     </div>
 
                     <div class="mb-3">
                         <label for="destination_language" class="form-label">Target language</label>
                         <select id="destination_language" name="destination_language" class="form-select">
-                            <option>EN</option>
-                            <option>BN</option>
+                            <option value="en">EN</option>
+                            <option value="bn">BN</option>
                         </select>
                     </div>
-                    <br>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
 
 
             </div>
             <br>
-            <a href="#" class="btn btn-primary btn-lg" role="button" aria-disabled="false">Download Translated
+            <a href="{{ file.url }}" class="btn btn-primary btn-lg" role="button"
+               aria-disabled="false">Download
+                Translated
                 File</a>
         </div>
     </div>
