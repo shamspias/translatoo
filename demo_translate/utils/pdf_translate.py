@@ -10,9 +10,9 @@ def translate_pdf(pdf_file_name, source_ln, target_ln):
     make pdf into word
     translate the word make it into pdf and remove the converted word
     """
-    word_file = target_ln + "_" + pdf_file_name[:-3]
+    word_file = target_ln + "_" + pdf_file_name.name[:-4]
     parse(pdf_file_name, word_file, start=0, end=None)
-    target_word_file = pdf_file_name[:-3] + ".docx"
+    target_word_file = pdf_file_name[:-4] + ".docx"
 
     language_translation(word_file, target_word_file, source_ln, target_ln)
 
