@@ -7,14 +7,14 @@ from pathlib import Path
 import subprocess
 
 
-def doc2pdf_linux(doc, file_path):
+def doc2pdf_linux(doc):
     """
     convert a doc/docx document to pdf format (linux only, requires libreoffice)
     :param doc: path to document
     """
-    path_project = 'media/files/'
+    path_project = 'media/files/translate/'
     # cmd = ['libreoffice --convert-to pdf ' + path_project + doc + ' --outdir ' + path_project + file_path]
-    cmd = 'libreoffice --convert-to pdf'.split() + [doc] + ['--outdir'] + [file_path]
+    cmd = 'libreoffice --convert-to pdf'.split() + [doc] + ['--outdir'] + [path_project]
     print(cmd)
     p = subprocess.Popen(cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
     p.wait(timeout=1000)
@@ -40,13 +40,12 @@ def translate_pdf(pdf_file, source_ln, target_ln):
     language_translation(word_file, target_word_file, source_ln, target_ln)
 
     new_pdf_file_name = "media/files/" + target_ln + "_" + pdf_file_name
-    new_lin_pdf_file_name = target_ln + "_" + pdf_file_name
     return_pdf_path = target_ln + "_" + pdf_file_name
     try:
         from docx2pdf import convert
         convert(target_word_file, new_pdf_file_name)
     except:
-        doc2pdf_linux(target_word_file, new_lin_pdf_file_name)
+        doc2pdf_linux(target_word_file)
 
     os.remove(word_file)
     os.remove(target_word_file)
