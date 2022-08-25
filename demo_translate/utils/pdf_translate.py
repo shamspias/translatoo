@@ -12,12 +12,11 @@ def doc2pdf_linux(doc, file_path):
     convert a doc/docx document to pdf format (linux only, requires libreoffice)
     :param doc: path to document
     """
-    path_project = '/home/ubuntu/translatoo/'
+    path_project = 'media/files/'
     # cmd = ['libreoffice --convert-to pdf ' + path_project + doc + ' --outdir ' + path_project + file_path]
-    cmd = 'libreoffice --convert-to pdf'.split() + [doc] + ['--outdir'] + ['media/files/'] + [file_path]
+    cmd = 'libreoffice --convert-to pdf'.split() + [doc] + ['--outdir'] + [file_path]
     print(cmd)
     p = subprocess.Popen(cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
-    print(p)
     p.wait(timeout=1000)
     stdout, stderr = p.communicate()
     if stderr:
