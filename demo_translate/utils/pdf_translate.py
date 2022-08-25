@@ -43,10 +43,11 @@ def translate_pdf(pdf_file, source_ln, target_ln):
     try:
         from docx2pdf import convert
         convert(target_word_file, new_pdf_file_name)
-        return_pdf_path = "files/translate/" + pdf_file_name
+        return_pdf_path = "files/" + target_ln + "_" + pdf_file_name
+
     except:
         doc2pdf_linux(target_word_file)
-        return_pdf_path = "files/" + target_ln + "_" + pdf_file_name
+        return_pdf_path = "files/translate/" + pdf_file_name
 
     os.remove(word_file)
     os.remove(target_word_file)
