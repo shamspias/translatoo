@@ -16,12 +16,13 @@ gf = Gramformer(models=1, use_gpu=False)  # 1=corrector, 2=detector
 def text_proofreading(influent_sentences=["fixed your", "Spelling"]):
     for influent_sentence in influent_sentences:
         context = {}
+        my_text = ""
+        correct_text = ""
         corrected_sentences = gf.correct(influent_sentence, max_candidates=1)
-        print("[Input] ", influent_sentence)
-        context['input'] = influent_sentence
+        my_text += influent_sentence
         for corrected_sentence in corrected_sentences:
-            print("[Correction] ", corrected_sentence)
-            context['correction'] = influent_sentence
-
+            correct_text += corrected_sentence
+        context['input'] = my_text
+        context['correction'] = correct_text
         print("-" * 100)
         return context
