@@ -1,1 +1,38 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Proofreading
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="container text-center">
+            <br>
+
+            <div class="row">
+                <form action="./" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="proofreading-area" class="form-label">Write your text</label>
+                        <textarea name="proofreading" class="form-control" id="proofreading-area"
+                                  rows="3"> {{ input }} </textarea>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+            </div>
+            <br>
+
+            <div class="mb-3">
+                <label for="proofreading-fixed-area" class="form-label">Need to solve</label>
+                <textarea name="proofreading-fixed" readonly class="form-control" id="proofreading-fixed-area"
+                          rows="3"> {{ correction }} </textarea>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
