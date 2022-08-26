@@ -13,6 +13,7 @@ class ProofreadingView(TemplateView):
     def post(self, request, *args, **kwargs):
         my_test = request.POST.get('proofreading', '')
         my_list_text = my_test.split('.', )
+        print(my_list_text)
         context = text_proofreading(my_list_text)
 
         return render(request, 'proofreading.html', context=context)
