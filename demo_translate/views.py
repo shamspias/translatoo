@@ -107,3 +107,23 @@ class DocumentTranslateView(TemplateView):
         context["language_form"] = self.language_code
         context["success"] = "Click Download"
         return render(request, 'translate_files.html', context=context)
+
+
+class OCRView(TemplateView):
+    """
+    PDF or Document Image to Text using ocr
+    """
+    template_name = 'ocr.html'
+
+    def post(self, request, *args, **kwargs):
+        my_file = request.FILES.get('my_file')
+        source_language = request.POST.get('short_code')
+
+        if my_file:
+            random_name = ''.join(random.choices(string.ascii_lowercase + string.digits, k=10))
+            new_name = random_name + my_file.name
+            # _file.delete()
+
+            _file = TranslatedFile.objects.create(name=new_name, my_file=my_file)
+            file_obj = TranslatedFile.objects.get(name__exact=new_name)
+            print(file_obj.name)

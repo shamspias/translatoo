@@ -24,7 +24,7 @@ urlpatterns = [
                   path('admin/', admin.site.urls),
                   # path('sdk/', include('sdk_test.urls')),
                   path('', include('demo_translate.urls')),
-                  path('proofreading/', include('proofreader.urls')),
+                  # path('proofreading/', include('proofreader.urls')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()
