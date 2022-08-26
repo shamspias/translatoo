@@ -24,5 +24,6 @@ def text_proofreading(influent_sentences=["fixed your", "Spelling"]):
             correct_text += corrected_sentence
         context['input'] = my_text
         context['correction'] = correct_text
+        print(context)
         print("-" * 100)
         return context
