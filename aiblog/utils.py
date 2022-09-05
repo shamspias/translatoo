@@ -15,7 +15,7 @@ def generate_blog_topics(prompt):
         frequency_penalty=0,
         presence_penalty=0
     )
-    context['action'] = "/ai-blog/sections"
+    context['action'] = "/ai-blog/sections/"
     context['input'] = prompt
     context['correction'] = response['choices'][0]['text']
     return context
@@ -33,7 +33,7 @@ def generate_blog_sections(prompt, title):
         frequency_penalty=0,
         presence_penalty=0
     )
-    context['action'] = "/ai-blog/sections/expander"
+    context['action'] = "/ai-blog/sections/expander/"
     context['input'] = prompt
     context['correction'] = response['choices'][0]['text']
     return context
