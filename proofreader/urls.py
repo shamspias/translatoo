@@ -7,5 +7,5 @@ from .views import (
 
 urlpatterns = [
     path('', ProofreadingView.as_view(), name="proofreading"),
-    path('ai', ProofreadingOpenAIView.as_view(), name="proofreading-ai"),
+    path('ai/', ProofreadingOpenAIView.as_view(), name="proofreading-ai"),
 ]

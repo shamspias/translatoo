@@ -4,8 +4,6 @@ from gramformer import Gramformer
 import torch
 import openai
 
-openai.api_key = settings.OPEN_AI_KEY
-
 
 def set_seed(seed):
     torch.manual_seed(seed)
@@ -33,6 +31,7 @@ def text_proofreading(influent_sentences=["fixed your", "Spelling"]):
 
 
 def ai_proofreading(prompt):
+    openai.api_key = settings.OPEN_AI_KEY
     context = {}
     response = openai.Completion.create(
         model="text-davinci-002",
