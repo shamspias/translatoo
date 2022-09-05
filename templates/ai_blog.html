@@ -37,6 +37,24 @@
                           rows="3"> {{ correction }} </textarea>
             </div>
 
+            {% if action %}
+                <div class="row">
+                    <form action="{{ action }}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="ai-blog-parent" class="form-label">Main Topic</label>
+                            <input type="text" name="ai-blog-input-parent" class="form-control" id="ai-blog-parent"
+                                   value="{{ input_parent }}">
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+
+                </div>
+            {% endif %}
+
+
         </div>
     </div>
 
