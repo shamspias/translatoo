@@ -42,7 +42,7 @@
                     <form action="{{ action }}" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="mb-3">
-                            <label for="ai-blog-parent" class="form-label">Main Topic</label>
+                            <label for="ai-blog-parent" class="form-label">{{ name }}</label>
                             <input type="text" name="ai-blog-input-parent" class="form-control" id="ai-blog-parent"
                                    value="{{ input_parent }}">
                         </div>

@@ -17,6 +17,7 @@ def generate_blog_topics(prompt):
     )
     context['action'] = "/ai-blog/sections/"
     context['input'] = prompt
+    context['name'] = "Main Topic"
     context['correction'] = response['choices'][0]['text']
     return context
 
@@ -35,6 +36,7 @@ def generate_blog_sections(prompt, title):
     )
     context['action'] = "/ai-blog/sections/expander/"
     context['input'] = prompt
+    context['name'] = "Sections"
     context['correction'] = response['choices'][0]['text']
     return context
 
@@ -51,7 +53,7 @@ def blog_section_expander(prompt, section):
         frequency_penalty=0,
         presence_penalty=0
     )
-    context['input_parent'] = prompt
+    context['input_parent'] = section
     context['input'] = prompt
     context['correction'] = response['choices'][0]['text']
     return context
