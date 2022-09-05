@@ -13,6 +13,13 @@
             <div class="row">
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
+                    {% if input_parent %}
+                        <div class="mb-3">
+                            <label for="ai-blog-parent" class="form-label">Main Topic</label>
+                            <input type="text" name="ai-blog-input-parent" class="form-control" id="ai-blog-parent"
+                                   value="{{ input_parent }}">
+                        </div>
+                    {% endif %}
                     <div class="mb-3">
                         <label for="ai-blog" class="form-label">Topic</label>
                         <input type="text" name="ai-blog-input" class="form-control" id="ai-blog" value="{{ input }}">

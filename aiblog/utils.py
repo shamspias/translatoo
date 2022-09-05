@@ -20,11 +20,12 @@ def generate_blog_topics(prompt):
     return context
 
 
-def generate_blog_sections(prompt):
+def generate_blog_sections(prompt, title):
     context = {}
     response = openai.Completion.create(
         engine="text-davinci-002",
-        prompt="Expand the blog title in to high level blog sections: {} \n\n ".format(prompt),
+        prompt="Expand the blog title: {} \n in to high level blog sections: {} \n\n -Introduction:".format(prompt,
+                                                                                                            title),
         temperature=0.6,
         max_tokens=1024,
         top_p=1,
@@ -36,18 +37,19 @@ def generate_blog_sections(prompt):
     return context
 
 
-def blog_section_expander(prompt):
+def blog_section_expander(prompt, section):
     context = {}
     response = openai.Completion.create(
         engine="text-davinci-002",
-        prompt="Expand the blog section in to a detailed professional , witty and clever explanation.\n\n {}".format(
-            prompt),
+        prompt="Expand the blog section: {} \n\n in to a detailed professional , witty and clever explanation.\n\n {}".format(
+            prompt, section),
         temperature=0.7,
         max_tokens=1024,
         top_p=1,
         frequency_penalty=0,
         presence_penalty=0
     )
+    context['input_parent'] = prompt
     context['input'] = prompt
     context['correction'] = response['choices'][0]['text']
     return context
