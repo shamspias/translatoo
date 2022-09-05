@@ -8,7 +8,7 @@ from .views import (
 )
 
 urlpatterns = [
-    path('topic/', GenerateBlogTopicsView.as_view(), name="blog-topics"),
+    path('', GenerateBlogTopicsView.as_view(), name="blog-topics"),
     path('sections/', GenerateBlogSectionsView.as_view(), name="blog-sections"),
     path('sections/expander/', BlogSectionExpanderView.as_view(), name="blog-sections-expander"),
 ]
