@@ -8,7 +8,7 @@ def generate_blog_topics(prompt):
     context = {}
     response = openai.Completion.create(
         engine="text-davinci-002",
-        prompt="Generate blog topics on: {}. \n \n 1.  ".format(prompt),
+        prompt="Generate blog topics on: {}. \n \n ".format(prompt),
         temperature=0.7,
         max_tokens=100,
         top_p=1,
@@ -24,7 +24,7 @@ def generate_blog_sections(prompt):
     context = {}
     response = openai.Completion.create(
         engine="text-davinci-002",
-        prompt="Expand the blog title in to high level blog sections: {} \n\n- Introduction: ".format(prompt),
+        prompt="Expand the blog title in to high level blog sections: {} \n\n - Introduction: ".format(prompt),
         temperature=0.6,
         max_tokens=100,
         top_p=1,
