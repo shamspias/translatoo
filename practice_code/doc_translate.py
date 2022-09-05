@@ -1,7 +1,16 @@
 import pypandoc
 import re
-from googletrans import Translator
-import requests
+from deep_translator import (GoogleTranslator,
+                             MicrosoftTranslator,
+                             PonsTranslator,
+                             LingueeTranslator,
+                             MyMemoryTranslator,
+                             YandexTranslator,
+                             PapagoTranslator,
+                             DeeplTranslator,
+                             QcriTranslator,
+                             single_detection,
+                             batch_detection)
 
 
 def translate_language(source, ext):
@@ -11,22 +20,12 @@ def translate_language(source, ext):
     print(my_string)
     # translator = Translator()
     for i, para in enumerate(my_string):
-        data = {
-            "source": "auto",
-            "target": "de",
-            "text": para,
-            "proxies": [],
-        }
-        response = requests.post('https://deep-translator-api.azurewebsites.net/google/', json=data)
-        if response.json()["translation"] is None:
-            continue
-        my_string[i] = response.json()["translation"]
-    # for i, para in enumerate(my_string):
-    #     try:
-    #         translation = translator.translate(para, dest="bn")
-    #         my_string[i] = translation.text
-    #     except:
-    #         print("Error " + str(i))
+        try:
+            translated = GoogleTranslator(source='auto', target='german').translate(para)
+            my_string[i] = translated
+        except:
+            print("Error")
+    print("-----------------------")
     print(my_string)
 
 
