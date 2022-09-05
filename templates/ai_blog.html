@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    AI Blog Writer
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="container text-center">
+            <br>
+
+            <div class="row">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="ai-blog" class="form-label">Topic</label>
+                        <input type="text" name="ai-blog-input" class="form-control" id="ai-blog" value="{{ input }}">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+            </div>
+            <br>
+
+            <div class="mb-3">
+                <label for="ai-blog-text-area" class="form-label">Blog contains</label>
+                <textarea name="ai-blog-output" readonly class="form-control" id="ai-blog-text-area"
+                          rows="3"> {{ correction }} </textarea>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

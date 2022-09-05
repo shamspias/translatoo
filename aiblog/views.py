@@ -1,14 +1,42 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
+from .utils import generate_blog_topics, generate_blog_sections, blog_section_expander
 
 
 class GenerateBlogTopicsView(TemplateView):
-    pass
+    """
+    View to Generate Blog topics
+    """
+    template_name = 'ai_blog.html'
+
+    def post(self, request, *args, **kwargs):
+        my_test = request.POST.get('ai-blog-input', '')
+        context = generate_blog_topics(my_test)
+
+        return render(request, 'ai_blog.html', context=context)
 
 
 class GenerateBlogSectionsView(TemplateView):
-    pass
+    """
+       View to Generate Blog topics
+    """
+    template_name = 'ai_blog.html'
+
+    def post(self, request, *args, **kwargs):
+        my_test = request.POST.get('ai-blog-input', '')
+        context = generate_blog_sections(my_test)
+
+        return render(request, 'ai_blog.html', context=context)
 
 
 class BlogSectionExpanderView(TemplateView):
-    pass
+    """
+       View to Generate Blog topics
+    """
+    template_name = 'ai_blog.html'
+
+    def post(self, request, *args, **kwargs):
+        my_test = request.POST.get('ai-blog-input', '')
+        context = blog_section_expander(my_test)
+
+        return render(request, 'ai_blog.html', context=context)
