@@ -18,26 +18,25 @@ from deep_translator import (GoogleTranslator,
 def translate_language(source, ext):
     document_name = source + "." + ext
     output = pypandoc.convert_file(document_name, 'html5')
-    my_string = re.findall(r'>(.+?)<', output)
-    my_string_old = my_string.copy()
-    print(my_string)
-    # translator = Translator()
-    for i, para in enumerate(my_string):
-        try:
-            translated = GoogleTranslator(source='auto', target='german').translate(para)
-            my_string[i] = translated
-        except:
-            print("Error")
-    print("-----------------------")
-    print(my_string)
-    print("-----------------------")
     soup = BeautifulSoup(output, features="lxml")
     print("-----------------------")
-    target = soup.find_all(text=r'>(.+?)<')
-    print(target)
-    print("-----------------------")
-    for v in target:
-        v.replace_with(v.replace(my_string_old[v], my_string[v]))
+    target_tags = re.findall(r'<.+?>', output)  # get all html tags
+    target_tags = list(dict.fromkeys(target_tags))  # removing duplicates
+    for i, word in enumerate(target_tags):
+        target_tags[i] = word.replace('</', '<')
+        target_tags[i] = target_tags[i].replace('<', '')
+        target_tags[i] = target_tags[i].replace('>', '')
+
+        if " " in target_tags[i]:
+            target_tags[i] = target_tags[i][:target_tags[i].index(" ")]
+
+    target_tags = list(dict.fromkeys(target_tags))  # removing duplicates
+
+    for i in soup.findAll(target_tags):
+        try:
+            i.string.replace_with(GoogleTranslator(source='auto', target='german').translate(i.string))
+        except:
+            print("error")
     print(soup)
 
 
