@@ -37,7 +37,11 @@ def translate_language(source, ext):
             i.string.replace_with(GoogleTranslator(source='auto', target='german').translate(i.string))
         except:
             print("error")
-    print(soup)
+
+    with open("output1.html", "w") as file:
+        file.write(str(soup))
+
+    return pypandoc.convert_file('output1.html', 'docx', outputfile="somefile.docx")
 
 
 print("Please enter source document name.")
